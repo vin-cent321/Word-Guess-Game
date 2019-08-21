@@ -1,0 +1,71 @@
+var words = ["Ocarina of Time", 
+             "Deku Tree", 
+             "Ganondorf", 
+             "Navi the Fairy", 
+             "Lost Woods", 
+             "Great Fairy Fountain", 
+             "Goron City", 
+             "Hyrule", 
+             "Temple of Time", 
+             "Zelda"];
+
+var userGuess = [];
+var randomWord = document.getElementById("current-word");
+
+// picks random word from array
+
+
+// sets array to show how many _'s or letters are in the word
+var answerArray = [];
+for (var i = 0; i < randomWord.length; i++) {
+    answerArray[i] = "_";
+}
+var remainingLetters = randomWord.length;
+
+var randomWord = words[Math.floor(Math.random() * words.length)];
+
+document.onkeyup = function(event) {
+    
+    var userGuess = event.key;
+
+    if userGuess == answerArray {wins++;
+    }
+
+    
+
+
+
+
+randomWord.textContent = "current-word";
+
+// main game loop
+
+
+Main = {};
+Main.WordArray = [];
+Main.WordUArray = [];
+
+Main.Lives = 4;
+Main.NumInWordBank = Words.length;
+
+Main.Word = "test";
+Main.WordU = "";
+
+// functions start
+
+Main.PullWord = function(){
+    Main.Word = Words.list(Math.floor(Math.random() * Main.NumInWordBank));
+}
+
+Main.SetUnderline = function(){
+    Main.PullWord();
+    for(i = 0; i < Main.Word.length; i++){
+        Main.WordArray[i] = Main.Word.charAt(i);
+        Main.WordUArray[i] = "_";
+    }
+    Main.WordU = Main.WordUArray.join(" ");
+    document.getElementById("words-text").innerHTML = Main.WordU;
+    document.getElementById("numLetters").innerHTML = Main.Word.length;
+}
+
+Main.SetUnderline
