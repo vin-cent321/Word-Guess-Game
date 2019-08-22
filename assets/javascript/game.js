@@ -1,35 +1,48 @@
-var wordChoices = ["Zelda","Link"];
+window.onload = function () {
 
-var wins = 0;
-var losses = 0;
+    var wordChoices = ["Zelda", "Link"];
 
-// Pick a random word
-var randomWord = wordChoices[Math.floor(Math.random() * wordChoices.length)];
+    var wins = 0;
+    var losses = 0;
 
-// Create variables that hold references to the places in the HTML where we want to display things.
-var directionsText = document.getElementById("directions-text");
-var wordText = document.getElementById("word-text");
+    // Pick a random word
+    var randomWord = wordChoices[Math.floor(Math.random() * wordChoices.length)];
 
-// Set up the answer array
-var answerArray = [];
+    // Create variables that hold references to the places in the HTML where we want to display things.
+    var directionsText = document.getElementById("directions-text");
+    var wordText = document.getElementById("word-text");
 
-for (var i = 0; i < randomWord.length; i++) {
-    answerArray[i] = "_";
-    wordText.textContent(answerArray);
-}
+    // Set up the answer array
+    var answerArray = [];
 
-var remainingLetters = wordChoices.length;
-
-//Begin Game Loop
-
-document.onkeyup = function (event) {
-
-    var userGuess = event.key;
-
-    if ((userGuess === randomWord.length)) 
-        {wins++;
+    for (var i = 0; i < randomWord.length; i++) {
+        answerArray[i] = "_ ";
+        wordText.textContent += answerArray[i];
     }
 
-directionsText.textContent = "";
+    // Create variable to keep track of letters left in word
 
-}
+    var remainingLetters = randomWord.length;
+
+    //Begin Game Loop
+
+    while (remainingLetters > 0) {
+        var el = document.getElementById(wordText)
+        el.innerHTML = answerArray.join(" ");
+
+        document.onkeyup = function (event) {
+
+            var userGuess = event.key;
+
+            if ((userGuess === randomWord.length)) {
+                wins++;
+            }
+
+            directionsText.textContent = "Current Word";
+        }
+
+    }
+
+    }
+
+// charAt, indexOf, 
