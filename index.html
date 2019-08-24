@@ -6,12 +6,24 @@
     <title>Zelda Word Guess Game</title>
     <script src="assets/javascript/game.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
+
+    
 </head>
 <body>
 
-    <div>
-        <p id="directions-text">Press any key to get started!</p>
-        <p id="word-text"></p>
+        <img id="ocarina" src="assets/images/time.gif" alt="Ocarina">
+
+
+    <div id="images"></div>   
+    <div class="content">
+        <p>Press any key to get started!</p>
+        <p>Wins: </p><div id="totalWins"></div>
+        <p>Current Word</p>
+        <p id="currentWord"></p>
+        <p>Number of Guesses Remaining: </p><div id="remainingGuesses"></div>
+        <p>Letters Already Guessed: </p><div id="lettersGuessed"></div>
     </div>
     
 </body>

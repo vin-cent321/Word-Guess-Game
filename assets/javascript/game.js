@@ -1,48 +1,104 @@
 window.onload = function () {
 
-    var wordChoices = ["Zelda", "Link"];
+    // List of randomly generated words
+    var wordChoices =
+        [
+            "zelda",
+            "link",
+            "ganondorf",
+            "navi",
+            "ocarina",
+            "hyrule",
+            "heart",
+            "sheik"
+        ];
 
+    var word = wordChoices[Math.floor(Math.random() * wordChoices.length)];
+
+    //variable for wins, losses
     var wins = 0;
-    var losses = 0;
+    var remainingGuesses = 10;
 
-    // Pick a random word
-    var randomWord = wordChoices[Math.floor(Math.random() * wordChoices.length)];
+
+    var zeldaIMG = document.createElement("IMG");
+    zeldaIMG.src = "assets/images/" + word + ".gif";
+    
+
 
     // Create variables that hold references to the places in the HTML where we want to display things.
-    var directionsText = document.getElementById("directions-text");
-    var wordText = document.getElementById("word-text");
-
-    // Set up the answer array
-    var answerArray = [];
-
-    for (var i = 0; i < randomWord.length; i++) {
-        answerArray[i] = "_ ";
-        wordText.textContent += answerArray[i];
-    }
-
-    // Create variable to keep track of letters left in word
-
-    var remainingLetters = randomWord.length;
+    var wordText = document.getElementById("currentWord");
+    var guessesText = document.getElementById("remainingGuesses");
+    var winsText = document.getElementById("totalWins");
+    var guessedText = document.getElementById("lettersGuessed");
 
     //Begin Game Loop
+    startGame();
+    function startGame() {
+        
 
-    while (remainingLetters > 0) {
-        var el = document.getElementById(wordText)
-        el.innerHTML = answerArray.join(" ");
+        var answerArray = [];
 
-        document.onkeyup = function (event) {
-
-            var userGuess = event.key;
-
-            if ((userGuess === randomWord.length)) {
-                wins++;
-            }
-
-            directionsText.textContent = "Current Word";
+        for (var i = 0; i < word.length; i++) {
+            answerArray[i] = "_ ";
+            wordText.textContent += answerArray[i];
         }
 
+        document.onkeyup = function (event) {
+            userGuess = event.key;
+            wordText.innerHTML = "";
+
+            // while (remainingLetters > 0) {
+            console.log(word);
+            for (var j = 0; j < word.length; j++) {
+
+                if (word[j] == userGuess) {
+                    answerArray[j] = userGuess;
+                }
+
+                wordText.innerHTML += answerArray[j];
+            }
+
+            if (word[j] != userGuess) {
+
+                if (remainingGuesses == 0) {
+                    reset();
+                }
+
+                else {
+                    remainingGuesses--;
+                    guessedText.innerHTML += event.key + ", ";
+                    console.log(guessedText);
+                }
+
+            }
+
+            if (wordText.innerHTML === word) {
+                wins++;
+                document.getElementById('images').appendChild(zeldaIMG);
+                reset();
+            }
+
+            winsText.innerHTML = wins;
+            guessesText.innerHTML = remainingGuesses;
+            console.log(remainingGuesses);
+        }
     }
 
+    function reset() {
+        word = wordChoices[Math.floor(Math.random() * wordChoices.length)];
+        answerArray = [];
+        wordText.innerHTML = "";
+        remainingGuesses = 10;
+        guessedText.innerHTML = [];
+        startGame();
     }
 
-// charAt, indexOf, 
+
+}
+
+
+
+// var img = document.createElement("IMG");
+// img.src = "images/";
+// document.getElementbyId('imageDiv'akaimgid).appendChild(img);
+// image('zelda.gif');
