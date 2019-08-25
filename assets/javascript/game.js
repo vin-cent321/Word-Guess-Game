@@ -15,15 +15,11 @@ window.onload = function () {
 
     var word = wordChoices[Math.floor(Math.random() * wordChoices.length)];
 
-    //variable for wins, losses
     var wins = 0;
     var remainingGuesses = 10;
 
-
     var zeldaIMG = document.createElement("IMG");
-    zeldaIMG.src = "assets/images/" + word + ".gif";
-    
-
+    document.getElementById('images').appendChild(zeldaIMG);
 
     // Create variables that hold references to the places in the HTML where we want to display things.
     var wordText = document.getElementById("currentWord");
@@ -33,8 +29,8 @@ window.onload = function () {
 
     //Begin Game Loop
     startGame();
+
     function startGame() {
-        
 
         var answerArray = [];
 
@@ -47,12 +43,11 @@ window.onload = function () {
             userGuess = event.key;
             wordText.innerHTML = "";
 
-            // while (remainingLetters > 0) {
-            console.log(word);
             for (var j = 0; j < word.length; j++) {
 
                 if (word[j] == userGuess) {
                     answerArray[j] = userGuess;
+                    document.getElementById('images').appendChild(zeldaIMG);
                 }
 
                 wordText.innerHTML += answerArray[j];
@@ -67,15 +62,15 @@ window.onload = function () {
                 else {
                     remainingGuesses--;
                     guessedText.innerHTML += event.key + ", ";
-                    console.log(guessedText);
                 }
 
             }
 
             if (wordText.innerHTML === word) {
                 wins++;
-                document.getElementById('images').appendChild(zeldaIMG);
+                zeldaIMG.src = "assets/images/" + word + ".gif";
                 reset();
+
             }
 
             winsText.innerHTML = wins;
@@ -95,10 +90,3 @@ window.onload = function () {
 
 
 }
-
-
-
-// var img = document.createElement("IMG");
-// img.src = "images/";
-// document.getElementbyId('imageDiv'akaimgid).appendChild(img);
-// image('zelda.gif');
